@@ -4,7 +4,7 @@ import api from './services/api'
 export default function App() {
     const [search, setSearch] = useState('');
     const [svg, setSvg] = useState('');
-    const [viewBox, setViewBox] = useState('');
+    const [viewBox, setViewBox] = useState(null);
 
     function handleSearch(e) {
         e.preventDefault();
@@ -19,15 +19,16 @@ export default function App() {
 
     }
     return (
-        <div>
+        <div className='container'>
             <div className='search'>
-                <form onSubmit={handleSearch}>
-                    <input type='text' onChange={event => setSearch(event.target.value)}/>
+                <form onSubmit={handleSearch} className='form'>
+                    <label htmlFor='city'>Cidade:</label>
+                    <input type='text' name='city' onChange={event => setSearch(event.target.value)}/>
                     <input type='submit' value='Enviar'/>
                 </form>
             </div>
             <div className='content'>
-                <svg width='200' height='200' viewBox={viewBox}>
+                <svg width='400' height='400' viewBox={viewBox}>
                     <path
                         d={svg}
                         stroke='#212121'
