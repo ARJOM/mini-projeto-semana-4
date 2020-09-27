@@ -46,13 +46,11 @@ export default function App() {
                     <path
                         d={stateSvg}
                         fillOpacity={0}
-                        stroke='#212121'
-                        strokeWidth='0.001'
+                        stroke='#000000'
+                        strokeWidth='0.007'
                     />
                     <path
                         d={svg}
-                        stroke='#212121'
-                        strokeWidth='0.001'
                     />
                 </svg>
             </div>
