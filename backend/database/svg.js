@@ -7,7 +7,7 @@ const getSVG = (request, response) => {
       if (error) {
         throw error;
       }
-      response.status(200).json(results.rows[0]['st_assvg']);
+      response.status(200).json(results.rows[0]);
     });
   };
 
@@ -18,7 +18,7 @@ const getSVG = (request, response) => {
       if (error) {
         throw error;
       }
-      response.status(200).json(results.rows[0]['getviewbox']);
+      response.status(200).json(results.rows[0]);
     });
   };
 
@@ -29,7 +29,7 @@ const getSVG = (request, response) => {
       if (error) {
         throw error;
       }
-      response.status(200).json(results.rows[0]['st_assvg']);
+      response.status(200).json(results.rows[0]);
     });
   };
 
@@ -40,7 +40,7 @@ const getSVG = (request, response) => {
       if (error) {
         throw error;
       }
-      response.status(200).json(results.rows[0]['getstateviewbox']);
+      response.status(200).json(results.rows[0]);
     });
   };
 
