@@ -14,6 +14,7 @@ app.get('/getSvg/:nome', svg.getSVG);
 app.get('/getViewBox/:nome',svg.getViewBox);
 app.get('/getStateSvg/:nome', svg.getStateSVG);
 app.get('/getStateViewBox/:nome', svg.getStateViewBox);
+app.get('/getStateName/:nome', svg.getStateName);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`);

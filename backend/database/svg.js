@@ -44,4 +44,15 @@ const getSVG = (request, response) => {
     });
   };
 
-module.exports = {getSVG, getViewBox, getStateSVG, getStateViewBox};
+  const getStateName = (request, response) => {
+    const municipio = request.params.nome;
+
+    pool.query('SELECT e.nome FROM municipio mun, estado e WHERE mun.estado ilike e.sigla AND mun.nome ilike $1', [municipio], (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows[0])
+    })
+  };
+
+module.exports = {getSVG, getViewBox, getStateSVG, getStateViewBox, getStateName};

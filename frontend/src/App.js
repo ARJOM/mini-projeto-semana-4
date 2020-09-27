@@ -5,16 +5,30 @@ export default function App() {
     const [search, setSearch] = useState('');
     const [svg, setSvg] = useState('');
     const [viewBox, setViewBox] = useState(null);
+    const [stateSvg, setStateSvg] = useState('');
 
-    function handleSearch(e) {
+    async function handleSearch(e) {
         e.preventDefault();
 
-        api.get(`/getSvg/${search}`)
-            .then(response => setSvg(response.data))
+        let estado = await api.get(`/getStateName/${search}`);
+        estado = estado.data.nome;
+
+        api.get(`getSvg/${search}`)
+            .then(response => {
+                setSvg(response.data.st_assvg);
+            })
             .catch(err => alert(err));
 
-        api.get(`getViewBox/${search}`)
-            .then(response => setViewBox(response.data))
+        api.get(`getStateSvg/${estado}`)
+            .then(response => {
+                setStateSvg(response.data.st_assvg);
+            })
+            .catch(err => alert(err));
+
+        api.get(`getStateViewBox/${estado}`)
+            .then(response => {
+                setViewBox(response.data.getstateviewbox);
+            })
             .catch(err => alert(err));
 
     }
@@ -29,6 +43,12 @@ export default function App() {
             </div>
             <div className='content'>
                 <svg width='400' height='400' viewBox={viewBox}>
+                    <path
+                        d={stateSvg}
+                        fillOpacity={0}
+                        stroke='#212121'
+                        strokeWidth='0.001'
+                    />
                     <path
                         d={svg}
                         stroke='#212121'
