@@ -22,4 +22,26 @@ const getSVG = (request, response) => {
     });
   };
 
-module.exports = {getSVG, getViewBox};
+  const getStateSVG = (request, response) => {
+    const estado = request.params.nome;
+
+    pool.query('SELECT ST_AsSVG(geom) FROM estado WHERE nome ilike $1', [estado], (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows[0]['st_assvg']);
+    });
+  };
+
+  const getStateViewBox = (request, response) => {
+    const estado = request.params.nome;
+
+    pool.query('SELECT getStateViewBox($1)', [estado], (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows[0]['getstateviewbox']);
+    });
+  };
+
+module.exports = {getSVG, getViewBox, getStateSVG, getStateViewBox};
