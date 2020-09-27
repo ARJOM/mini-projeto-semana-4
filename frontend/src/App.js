@@ -10,11 +10,11 @@ export default function App() {
         e.preventDefault();
 
         api.get(`/getSvg/${search}`)
-            .then(response => setSvg(response.data[0]['st_assvg']))
+            .then(response => setSvg(response.data))
             .catch(err => alert(err));
 
         api.get(`getViewBox/${search}`)
-            .then(response => setViewBox(response.data[0]['getviewbox']))
+            .then(response => setViewBox(response.data))
             .catch(err => alert(err));
 
     }
